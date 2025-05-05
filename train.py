@@ -152,7 +152,7 @@ plt.title('Model Accuracy')
 plt.ylabel('Accuracy')
 plt.xlabel('Epochs')
 plt.legend(['Training', 'Validation'], loc='upper left')
-plt.show()
+plt.savefig('./model_gen/f1.png')
 
 plt.plot(history.history['loss'])
 plt.plot(history.history['val_loss'])
@@ -160,7 +160,7 @@ plt.title('Model Loss')
 plt.ylabel('Loss')
 plt.xlabel('Epochs')
 plt.legend(['Training', 'Validation'], loc='upper left')
-plt.show()
+plt.savefig('./model_gen/f2.png')
 
 # Example prediction
 # test_image_path = "F:/WorkFlow Corporation/Projects/IntelliWaste/files/intelli-waste/val/label23/img_11525.jpg"
