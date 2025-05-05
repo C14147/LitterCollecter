@@ -63,7 +63,7 @@ train_x, test_x, train_y, test_y = train_test_split(
 # Create ImageDataGenerator
 print("Generating data...")
 train_datagen = ImageDataGenerator(
-    rotation_range=20,  # 增加旋转范围
+    rotation_range=25,  # 增加旋转范围
     width_shift_range=0.2,
     height_shift_range=0.2,
     shear_range=0.2,  # 增加剪切范围
@@ -75,8 +75,8 @@ train_datagen = ImageDataGenerator(
 
 test_datagen = ImageDataGenerator()
 
-train_generator = train_datagen.flow(train_x, train_y, batch_size=256)  # 调整批次大小
-test_generator = test_datagen.flow(test_x, test_y, batch_size=256)
+train_generator = train_datagen.flow(train_x, train_y, batch_size=128)  # 调整批次大小
+test_generator = test_datagen.flow(test_x, test_y, batch_size=128)
 
 # Create model
 model = keras.Sequential()
@@ -126,7 +126,7 @@ def lr_scheduler(epoch):
 
 lr_callback = keras.callbacks.LearningRateScheduler(lr_scheduler)
 checkpoint = keras.callbacks.ModelCheckpoint(
-    f"best_{model_version}.keras",
+    f"./model_gen/best_{model_version}.keras",
     monitor='val_accuracy',
     save_best_only=True,
     verbose=1
@@ -143,7 +143,7 @@ history = model.fit(
     callbacks=[lr_callback, checkpoint, tensorboard_callback],
 )
 
-model.save("LitterCollecter_{}.keras".format(model_version))
+model.save("./model_gen/LitterCollecter2_{}.keras".format(model_version))
 
 # Plot training history
 plt.plot(history.history['accuracy'])
