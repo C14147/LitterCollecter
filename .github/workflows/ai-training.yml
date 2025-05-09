@@ -35,7 +35,7 @@ jobs:
         python train.py
         
     - name: Zip the Build
-      run: zip -r ${{ secrets.ReleaseZipName }} ./model_gen/ 
+      run: tar -cf ${{ secrets.ReleaseZipName }} ".\model_gen\" 
       
     - name: Create Release and Upload Release Asset
       uses: softprops/action-gh-release@v1
