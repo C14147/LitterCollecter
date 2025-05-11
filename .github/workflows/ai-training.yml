@@ -33,9 +33,14 @@ jobs:
     - name: Train Model
       run: |
         python train.py
-        
-    - name: Zip the Build
-      run: tar -cf ${{ secrets.ReleaseZipName }} ".\model_gen\" 
+
+    - name: Use choco install 7z
+      run: |
+        choco install 7zip -y
+      
+    - name: Zip the file by 7-Zip
+      run: |
+          7z a ${{ secrets.ReleaseZipName }} .\model_gen\*
       
     - name: Create Release and Upload Release Asset
       uses: softprops/action-gh-release@v1
