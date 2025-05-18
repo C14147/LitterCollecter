@@ -40,7 +40,7 @@ jobs:
       
     - name: Zip the file by 7-Zip
       run: |
-          7z a ${{ secrets.ReleaseZipName }} .\model_gen\*
+          7z a model.zip .\model_gen\*
       
     - name: Create Release and Upload Release Asset
       uses: softprops/action-gh-release@v1
@@ -52,4 +52,4 @@ jobs:
         draft: false
         prerelease: false
         files: |
-          ${{ secrets.ReleaseZipName }}.zip
+          model.zip
